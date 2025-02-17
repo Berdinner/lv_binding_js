@@ -29,14 +29,20 @@ const styles = {
   title: { // Large dark title text.
     'font-size': 32,
     'text-color': dark,
+    'width': 310,
+    'text-wrap': 1,
   },
   body: { // Body text.
     'font-size': 16,
     'text-color': dark,
+    'width': 310,
+    'text-wrap': 1,
   },
   small: { // Small gray text.
     'font-size': 12,
     'text-color': gray,
+    'width': 310,
+    'text-wrap': 1,
   },
   button: { // Red button with square corners.
     'background-color': gray,
@@ -77,8 +83,10 @@ function App() {
         </Text>
       </View>
       <Line style={styles.line}  points={[[0,0],[312,0]]}/>
-      <Text style={styles.small}>Small Text</Text>
-      <Text style={styles.body}>Body Text</Text>
+      <Text style={styles.small}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Text>
+      <Line style={styles.line}  points={[[0,0],[312,0]]}/>
+
+      <Text style={styles.body}>The quick brown fox jumps over the lazy dog, to which the dog barks and the fox runs away. The fox runs to the forest and the dog follows. The dog is a good dog and the fox is a good fox.</Text>
       <Button style={styles.button} onPressedStyle={styles.buttonPressed}>
         <Text style={styles.buttonText}>button</Text>
       </Button>
