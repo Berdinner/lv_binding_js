@@ -9,17 +9,15 @@ const light = "#e8d6c0" as any;
 const highlight = "#a1281c" as any;
 
 const styles = {
-  container: {
+  container: { // Main container for all elements.
     'width': 320,
     'height': 240,
     'background-color': light,
     'flex-direction': 'column',
     'padding': 2,
-    'gap': 10,
     'display': 'flex',
-    'align-items': 'flex-start',
   },
-  section: {
+  section: { // Gray section for titles etc.
     'width': '100%',
     'height': 'auto',
     'background-color': gray,
@@ -27,7 +25,7 @@ const styles = {
     'border-width': 0,
     'padding': 2,
   },
-  title: {
+  title: { // Large dark title text.
     'font-size': 32,
     'text-color': dark,
     'border-radius': 5,
@@ -35,18 +33,22 @@ const styles = {
     'border-color': gray,
     'background-color': highlight,
   },
-  body: {
+  body: { // Body text.
     'font-size': 16,
     'text-color': dark,
   },
-  small: {
+  small: { // Small gray text.
     'font-size': 12,
     'text-color': gray,
   },
-  button: {
+  button: { // Red button with square corners.
     'background-color': highlight,
     'border-radius': 0,
     'border-width': 0,
+    'padding': 4,
+  },
+  line: { // Thin red line to seperate sections.
+    'line-color': highlight
   }
 };
 
@@ -59,9 +61,12 @@ function App() {
           UI Styling Test
         </Text>
       </View>
+      <Line style={styles.line}  points={[[0,0],[312,0]]}/>
       <Text style={styles.small}>Small Text</Text>
       <Text style={styles.body}>Body Text</Text>
-      <Button style={styles.button}>This is a button</Button>
+      <Button style={styles.button}>
+        <Text>button</Text>
+      </Button>
     </View>
   );
 }
