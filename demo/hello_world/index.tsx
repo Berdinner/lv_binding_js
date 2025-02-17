@@ -5,6 +5,7 @@ const URL = "https://mastodon.social/api/v1/timelines/public";
 
 const dark = "#000000" as any;
 const gray = '#92938d' as any;
+const lightGray = '#b5b5a8' as any;
 const light = "#e8d6c0" as any;
 const highlight = "#a1281c" as any;
 
@@ -20,7 +21,7 @@ const styles = {
   section: { // Gray section for titles etc.
     'width': '100%',
     'height': 'auto',
-    'background-color': gray,
+    'background-color': lightGray,
     'border-radius': 0,
     'border-width': 0,
     'padding': 2,
@@ -28,10 +29,6 @@ const styles = {
   title: { // Large dark title text.
     'font-size': 32,
     'text-color': dark,
-    'border-radius': 5,
-    'border-width': 2,
-    'border-color': gray,
-    'background-color': highlight,
   },
   body: { // Body text.
     'font-size': 16,
@@ -42,10 +39,28 @@ const styles = {
     'text-color': gray,
   },
   button: { // Red button with square corners.
-    'background-color': highlight,
-    'border-radius': 0,
-    'border-width': 0,
+    'background-color': gray,
+    'border-radius': 0, 
+    'border-width': 2,
+    'border-color': highlight,
     'padding': 4,
+    'transition-property': 'background-color, border-color',
+    'transition-duration': '10ms',
+    'transition-timing-function': 'linear',
+    'transition-delay': '0',
+  },
+  buttonPressed: {
+    'background-color': highlight,
+    'border-radius': 0, 
+    'border-width': 2,
+    'border-color': gray,
+    'transition-property': 'background-color, border-color',
+    'transition-duration': '40ms',
+    'transition-timing-function': 'linear',
+    'transition-delay': '0',
+  },
+  buttonText: {
+    'text-color': dark,
   },
   line: { // Thin red line to seperate sections.
     'line-color': highlight
@@ -64,8 +79,8 @@ function App() {
       <Line style={styles.line}  points={[[0,0],[312,0]]}/>
       <Text style={styles.small}>Small Text</Text>
       <Text style={styles.body}>Body Text</Text>
-      <Button style={styles.button}>
-        <Text>button</Text>
+      <Button style={styles.button} onPressedStyle={styles.buttonPressed}>
+        <Text style={styles.buttonText}>button</Text>
       </Button>
     </View>
   );
