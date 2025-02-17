@@ -31,7 +31,7 @@ const styles = {
   title: { // Large dark title text.
     'font-size': 32,
     'text-color': dark,
-    'width': 310,
+    'width': 300,
     'text-wrap': 1,
   },
   body: { // Body text.
@@ -70,6 +70,18 @@ const styles = {
   buttonText: {
     'text-color': dark,
   },
+  indicator: {
+    'border-color': dark,
+    'background-color': light,
+  },
+  indicatorDisabled: {
+    'border-color': dark,
+    'background-color': lightGray,
+  },
+  indicatorChecked: {
+    'background-image': null,
+    'background-color': gray,
+  },  
   line: { // Thin red line to seperate sections.
     'line-color': highlight
   }
@@ -97,19 +109,27 @@ function App() {
             <Checkbox
                 checked={false}
                 text="Apple"
+                indicatorStyle={styles.indicator}
+                indicatorCheckedStyle={styles.indicatorChecked}
             />
             <Checkbox
                 checked={false}
                 text="Banana"
+                indicatorStyle={styles.indicator}
+                indicatorCheckedStyle={styles.indicatorChecked}
             />
             <Checkbox
                 checked={false}
                 disabled={true}
                 text="Lemon"
+                indicatorStyle={styles.indicatorDisabled}
+                indicatorCheckedStyle={styles.indicatorChecked}
             />
             <Checkbox
                 checked={false}
                 text={`Melon\nand a new line`}
+                indicatorStyle={styles.indicator}
+                indicatorCheckedStyle={styles.indicatorChecked}
             />
         </View>
     </View>
