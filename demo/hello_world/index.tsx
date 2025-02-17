@@ -4,8 +4,7 @@ import React, { useEffect, useState } from "react";
 const URL = "https://mastodon.social/api/v1/timelines/public";
 
 const black = "#000000" as any;
-const gray = '#92938d' as any;
-const offWhite = "#e8d6c0" as any;
+const offWhite = "#f0f6f0" as any;
 const highlight = "#ff00aa" as any;
 
 const pixel = 4 as any;
@@ -16,10 +15,12 @@ const styles = {
     'height': 240,
     'background-color': offWhite,
     'flex-direction': 'column',
-    'padding': 2,
+    'padding': 0,
+    'border-radius': 0,
+    'border-width': 0,
     'display': 'flex',
   },
-  section: { // Black section for titles etc.
+  section1: { // Black section for titles etc.
     'width': '100%',
     'height': 'auto',
     'background-color': black,
@@ -28,6 +29,16 @@ const styles = {
     'padding': pixel,
     'display': 'flex',
     'flex-direction': 'column',
+  },
+  section2: { // Gray section, fits inside section1.
+    'width': '48.75%',
+    'height': 'auto',
+    'background-color': offWhite,
+    'border-radius': 0,
+    'border-width': 0,
+    'padding': pixel,
+    'display': 'flex', 
+    'flex-direction': 'column', 
   },
   title: { // Large title text.
     'font-size': 32,
@@ -42,19 +53,18 @@ const styles = {
     'width': 310,
     'text-wrap': 1,
   },
-  small: { // Small gray text.
+  small: { // Small text.
     'font-size': 12,
-    'text-color': gray,
+    'text-color': black,
     'width': 310,
     'text-wrap': 1,
   },
   button: { // Red button with square corners.
-    'background-color': gray,
+    'background-color': black,
     'border-radius': 0, 
-    'border-width': 2,
-    'border-color': highlight,
-    'padding': 4,
-    'transition-property': 'background-color, border-color',
+    'border-width': 0,
+    'padding': pixel,
+    'transition-property': 'background-color',
     'transition-duration': '10ms',
     'transition-timing-function': 'linear',
     'transition-delay': '0',
@@ -62,15 +72,14 @@ const styles = {
   buttonPressed: {
     'background-color': highlight,
     'border-radius': 0, 
-    'border-width': 2,
-    'border-color': gray,
-    'transition-property': 'background-color, border-color',
+    'border-width': 0,
+    'transition-property': 'background-color',
     'transition-duration': '40ms',
     'transition-timing-function': 'linear',
     'transition-delay': '0',
   },
   buttonText: {
-    'text-color': black,
+    'text-color': offWhite,
   },
   indicator: {
     'border-color': black,
@@ -78,12 +87,15 @@ const styles = {
   },
   indicatorDisabled: {
     'border-color': black,
-    'background-color': gray,
+    'background-color': offWhite,
   },
   indicatorChecked: {
     'background-image': null,
-    'background-color': gray,
-  },  
+    'background-color': highlight,
+  }, 
+  indicatorText: {
+    'text-color': offWhite,
+  },
   line: { // Thin red line to seperate sections.
     'line-color': black,
     'line-width': pixel
@@ -94,20 +106,33 @@ function App() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.section}>
+      <View style={styles.section1}>
         <Text style={styles.title}>
           UI STYLING TEST
         </Text>
       </View>
-      <Line style={styles.line}  points={[[0,0],[312,0]]}/>
-      <Text style={styles.small}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Text>
-      <Line style={styles.line}  points={[[0,0],[312,0]]}/>
-      <Text style={styles.body}>The quick brown fox jumps over the lazy dog, to which the dog barks and the fox runs away. The fox runs to the forest and the dog follows. The dog is a good dog and the fox is a good fox.</Text>
+      <Line style={styles.line}  points={[[0,0],[320,0]]}/>
+      <Text style={[styles.small, { 'padding-left': pixel }]}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Text>
+      <Line style={styles.line}  points={[[0,0],[320,0]]}/>
+      <View style={[styles.section1, { 'flex-direction': 'row' }]}>
+        <View style={styles.section2}>
+          <Text style={[styles.body, { 'text-align': 'justify', 'width': '100%' }]}>
+            Text for the left-hand side!
+          </Text>
+        </View>
+        <View style={styles.section2}>
+          <Text style={[styles.body, { 'text-align': 'justify', 'width': '100%' }]}>
+            Text for the right-hand side!
+          </Text>
+        </View>
+      </View>
+      <Line style={styles.line}  points={[[0,0],[320,0]]}/>
+      <Text style={[styles.body, { 'padding-left': pixel }]}>The quick brown fox jumps over the lazy dog, to which the dog barks and the fox runs away. The fox runs to the forest and the dog follows. The dog is a good dog and the fox is a good fox.</Text>
       <Button style={styles.button} onPressedStyle={styles.buttonPressed}>
-        <Text style={styles.buttonText}>button</Text>
+        <Text style={styles.buttonText}>PRESS ME</Text>
       </Button>
 
-      <View style={styles.section}>
+      <View style={styles.section1}>
             <Checkbox
                 checked={false}
                 text="Apple"
@@ -129,9 +154,9 @@ function App() {
             />
         </View>
 
-        <Line style={styles.line}  points={[[0,0],[312,0]]}/>
+      <Line style={styles.line}  points={[[0,0],[320,0]]}/>
       <Text style={styles.body}>She sells sea shells by the sea shore. The shells that she sells are sea shells I'm sure. So if she sells sea shells by the sea shore, I'm sure that the shells are sea shore shells.</Text>
-      <Line style={styles.line}  points={[[0,0],[312,0]]}/>
+      <Line style={styles.line}  points={[[0,0],[320,0]]}/>
     </View>
   );
 }
