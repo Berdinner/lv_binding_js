@@ -31,17 +31,33 @@ const styles = {
     'border-width': 0,
     'padding': pixel,
     'display': 'flex',
-    'flex-direction': 'column',
+    'flex-direction': 'row',
+    'flex-wrap': 'wrap',
+    'gap': pixel,
+    'justify-content': 'space-between',
   },
   whiteBox: { // White section, fits inside blackBox.
-    'width': '48%',
+    'flex-grow': 1,
+    'flex-basis': 0,
+    'flex-shrink': 1,
     'height': 'auto',
     'background-color': offWhite,
     'border-radius': 0,
     'border-width': 0,
     'padding': pixel,
     'display': 'flex', 
-    'flex-direction': 'column', 
+    'flex-direction': 'column',
+  },
+  textContainer: { // Invisible container for text not already in a container with pixel padding on left-hand side.
+    'padding-left': pixel,
+    'padding-right': 0,
+    'padding-top': 0, 
+    'padding-bottom': 0,
+    'width': '100%',
+    'height': 'auto',
+    'border-width': 0,
+    'border-radius': 0,
+    'background-color': offWhite,
   },
 
   // Text
@@ -49,20 +65,21 @@ const styles = {
   title: { // Large title text.
     'font-size': 32,
     'text-color': offWhite,
-    'width': 300,
+    'width': '100%',
     'text-wrap': 1,
     'text-align': 'center',
   },
   body: { // Body text.
     'font-size': 16,
     'text-color': black,
-    'width': 310,
+    'width': '100%',
     'text-wrap': 1,
+    'text-align': 'justify', 
   },
   small: { // Small text.
     'font-size': 12,
     'text-color': black,
-    'width': 310,
+    'width': '100%',
     'text-wrap': 1,
   },
 
@@ -125,38 +142,51 @@ function App() {
 
   return (
     <View style={styles.mainContainer}>
+
       <View style={styles.blackBox}>
         <Text style={styles.title}>
           UI STYLING TEST
         </Text>
       </View>
+
       <Line style={styles.blackLine}  points={[[0,0],[320,0]]}/>
-      <Text style={[styles.small, { 'padding-left': pixel }]}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Text>
+
+      <View style={styles.textContainer}> 
+        <Text style={[styles.small]}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Text>
+      </View>
+
       <Line style={styles.blackLine}  points={[[0,0],[320,0]]}/>
-      <View style={[styles.blackBox, { 'flex-direction': 'row' }]}>
+
+      <View style={[styles.blackBox]}>
         <View style={styles.whiteBox}>
-          <Text style={[styles.body, { 'text-align': 'justify', 'width': '100%' }]}>
+          <Text style={[styles.body]}>
             Text for the left-hand side!
           </Text>
         </View>
         <View style={styles.whiteBox}>
-          <Text style={[styles.body, { 'text-align': 'justify', 'width': '100%' }]}>
+          <Text style={[styles.body]}>
             Text for the right-hand side!
           </Text>
         </View>
       </View>
+
       <Line style={styles.blackLine}  points={[[0,0],[320,0]]}/>
-      <Text style={[styles.body, { 'padding-left': pixel }]}>The quick brown fox jumps over the lazy dog, to which the dog barks and the fox runs away. The fox runs to the forest and the dog follows. The dog is a good dog and the fox is a good fox.</Text>
+
+      <View style={styles.textContainer}>
+        <Text style={[styles.body]}>The quick brown fox jumps over the lazy dog, to which the dog barks and the fox runs away. The fox runs to the forest and the dog follows. The dog is a good dog and the fox is a good fox.</Text>
+      </View>
+      
       <Button style={styles.button} onPressedStyle={styles.buttonPressed}>
         <Text style={styles.buttonText}>PRESS ME</Text>
       </Button>
 
       <View style={styles.blackBox}>
-            <Checkbox
-                checked={false}
-                text="Apple"
-                indicatorStyle={styles.indicator}
-                indicatorCheckedStyle={styles.indicatorChecked}
+        <View style={styles.whiteBox}>
+          <Checkbox
+            checked={false}
+            text="Apple"
+            indicatorStyle={styles.indicator}
+            indicatorCheckedStyle={styles.indicatorChecked}
             />
             <Checkbox
                 checked={false}
@@ -169,12 +199,17 @@ function App() {
                 disabled={true}
                 text="Disabled"
                 indicatorStyle={styles.indicatorDisabled}
-                indicatorCheckedStyle={styles.indicatorChecked}
-            />
+            indicatorCheckedStyle={styles.indicatorChecked}
+          />
         </View>
+      </View>
 
       <Line style={styles.blackLine}  points={[[0,0],[320,0]]}/>
-      <Text style={styles.body}>She sells sea shells by the sea shore. The shells that she sells are sea shells I'm sure. So if she sells sea shells by the sea shore, I'm sure that the shells are sea shore shells.</Text>
+
+      <View style={styles.textContainer}>
+        <Text style={[styles.body]}>She sells sea shells by the sea shore. The shells that she sells are sea shells I'm sure. So if she sells sea shells by the sea shore, I'm sure that the shells are sea shore shells.</Text>
+      </View>
+      
       <Line style={styles.blackLine}  points={[[0,0],[320,0]]}/>
     </View>
   );
