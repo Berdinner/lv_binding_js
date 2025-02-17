@@ -1,4 +1,4 @@
-import { Button, EAlignType, Line, Render, Text, Textarea, View } from "lvgljs-ui";
+import { Button, EAlignType, Line, Render, Text, Textarea, View, Checkbox } from "lvgljs-ui";
 import React, { useEffect, useState } from "react";
 
 const URL = "https://mastodon.social/api/v1/timelines/public";
@@ -25,6 +25,8 @@ const styles = {
     'border-radius': 0,
     'border-width': 0,
     'padding': 2,
+    'display': 'flex',
+    'flex-direction': 'column',
   },
   title: { // Large dark title text.
     'font-size': 32,
@@ -90,6 +92,26 @@ function App() {
       <Button style={styles.button} onPressedStyle={styles.buttonPressed}>
         <Text style={styles.buttonText}>button</Text>
       </Button>
+
+      <View style={styles.section}>
+            <Checkbox
+                checked={false}
+                text="Apple"
+            />
+            <Checkbox
+                checked={false}
+                text="Banana"
+            />
+            <Checkbox
+                checked={false}
+                disabled={true}
+                text="Lemon"
+            />
+            <Checkbox
+                checked={false}
+                text={`Melon\nand a new line`}
+            />
+        </View>
     </View>
   );
 }
