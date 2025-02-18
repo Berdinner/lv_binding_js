@@ -73,6 +73,17 @@ const STYLES = {
     'border-radius': 0,
     'background-color': WHITE,
   },
+  paddedContainer: { // Invisible container for buttons and other elements that need extra padding to not cut off shadows etc.
+    'padding-left': PIXEL,
+    'padding-right': PIXEL,
+    'padding-top': PIXEL, 
+    'padding-bottom': PIXEL * 2,
+    'width': '100%',
+    'height': 'auto',
+    'border-width': 0,
+    'border-radius': 0,
+    'background-color': WHITE,
+  },
 
   // Text
 
@@ -99,27 +110,57 @@ const STYLES = {
 
   // Buttons
 
-  button: { // Red button with square corners.
+  buttonBlack: { // Black button with white text.
     'background-color': BLACK,
     'border-radius': 0, 
     'border-width': 0,
     'padding': PIXEL,
     'transition-property': 'background-color',
-    'transition-duration': '10ms',
+    'transition-duration': '0',
     'transition-timing-function': 'linear',
     'transition-delay': '0',
+    'shadow-opacity': 0,
   },
-  buttonPressed: {
+  buttonBlackPressed: {
     'background-color': HIGHLIGHT,
     'border-radius': 0, 
     'border-width': 0,
     'transition-property': 'background-color',
-    'transition-duration': '40ms',
+    'transition-duration': '0',
     'transition-timing-function': 'linear',
     'transition-delay': '0',
   },
-  buttonText: {
+  buttonBlackText: {
     'text-color': WHITE,
+  },
+  buttonWhite: { // White button with black text and drop-shadow.
+    'background-color': WHITE,
+    'border-radius': 0, 
+    'border-width': 2,
+    'padding': PIXEL,
+    'transition-property': 'background-color',
+    'transition-duration': '0',
+    'transition-timing-function': 'ease-in-out',
+    'transition-delay': '0',
+    'shadow-width': PIXEL,
+    'shadow-color': BLACK,
+    'shadow-offset-x': 6,
+    'shadow-offset-y': 6,
+    'shadow-opacity': 1,
+  },
+  buttonWhitePressed: {
+    'background-color': HIGHLIGHT,
+    'border-radius': 0, 
+    'border-width': 2,
+    'padding': PIXEL,
+    'transition-property': 'background-color',
+    'transition-duration': '0',
+    'transition-timing-function': 'ease-in-out',
+    'transition-delay': '0',
+    'shadow-opacity': 0,
+  },
+  buttonWhiteText: {
+    'text-color': BLACK,
   },
 
   // Checkboxes
@@ -150,7 +191,14 @@ const STYLES = {
   blackLine: { // Thin BLACK line to seperate sections.
     'line-color': BLACK,
     'line-width': PIXEL
-  }
+  },
+
+  // Images
+
+  image: {
+    'width': 'auto',
+    'height': 'auto',
+}
 };
 
 function App() {
@@ -164,17 +212,10 @@ function App() {
         </Text>
       </View>
 
-      <View style={STYLES.blackBox}>
-        <View style={STYLES.whiteBox}>
           <Image 
-            src={'./border.png'}
-            style={{
-              width: 'auto',  // or specific pixel value
-              height: 'auto'  // or specific pixel value
-            }}
+            src={BORDER} 
+            style={STYLES.image}  // !!!! TODO: Figure out why the fuck this is not working.
           />
-        </View>
-      </View>
 
       <Line style={STYLES.blackLine} points={LINE}/>
 
@@ -223,9 +264,15 @@ function App() {
         <Text style={[STYLES.body]}>The quick brown fox jumps over the lazy dog, to which the dog barks and the fox runs away. The fox runs to the forest and the dog follows. The dog is a good dog and the fox is a good fox.</Text>
       </View>
       
-      <View style={STYLES.blankContainer}>
-        <Button style={STYLES.button} onPressedStyle={STYLES.buttonPressed}>
-          <Text style={STYLES.buttonText}>PRESS ME</Text>
+      <View style={STYLES.paddedContainer}>
+        <Button style={STYLES.buttonBlack} onPressedStyle={STYLES.buttonBlackPressed}>
+          <Text style={STYLES.buttonBlackText}>PRESS ME</Text>
+        </Button>
+      </View>
+
+      <View style={STYLES.paddedContainer}>
+        <Button style={STYLES.buttonWhite} onPressedStyle={STYLES.buttonWhitePressed}>
+          <Text style={STYLES.buttonWhiteText}>PRESS ME</Text>
         </Button>
       </View>
 
