@@ -13,8 +13,6 @@ const PIXEL = 4 as any;
 
 const LINE = [[0,0],[320,0]] as any;
 
-const [PROGRESS, setProgress] = useState(0)
-
 const STYLES = {
 
   // Containers
@@ -74,6 +72,8 @@ const STYLES = {
     'border-width': 0,
     'border-radius': 0,
     'background-color': WHITE,
+    'display': 'flex', 
+    'flex-direction': 'column',
   },
   paddedContainer: { // Invisible container for buttons and other elements that need extra padding to not cut off shadows etc.
     'padding-left': PIXEL,
@@ -85,6 +85,8 @@ const STYLES = {
     'border-width': 0,
     'border-radius': 0,
     'background-color': WHITE,
+    'display': 'flex', 
+    'flex-direction': 'column',
   },
 
   // Text
@@ -186,36 +188,38 @@ const STYLES = {
 
   //Sliders
   slider: {
-    'background-color': 'rgb(187,187,187)',
+    'width': '100%',
+    'height': 24,
+    'background-color': WHITE,
     'border-radius': 0,
-    'padding': '-2px 0'
+    'border-width': PIXEL,
+    'border-color': BLACK,
+    'padding': PIXEL * 2,
+  },
+  sliderThick: {
+    'width': '100%',
+    'height': 24,
+    'background-color': WHITE,
+    'border-radius': 0,
+    'border-width': PIXEL,
+    'border-color': BLACK,
+    'padding': PIXEL,
   },
   indicatorStyle: {
-    'background-color': 'magenta',
     'border-radius': 0,
+    'background-color': BLACK,
   },
   knobStyle: {
-    'background-color': 'cyan',
-    'border-width': '2px',
-    'border-color': 'cyan',
-    'padding': '6px',
-    'border-radius': 0,
-    'transition': 'background-color 300ms linear 0'
+    'opacity': 0,
   },
   indicatorPressedStyle: {
     'border-radius': 0,
-    'background-color': '0x00838F',
-    'transition': 'background-color 300ms linear 0'
+    'background-color': HIGHLIGHT,
   },
   knobPressedStyle: {
-    'background-color': '0x00838F',
-    'border-radius': 0,
-    'transition': 'background-color 300ms linear 0',
-    'border-width': '2px',
-    'border-color': '0x00838F',
-    'padding': '6px',
-  }
-  
+    'opacity': 0,
+  },
+
   // Lines
 
   whiteLine: { // Thin white line to seperate sections.
@@ -294,27 +298,22 @@ function App() {
 
       <Line style={STYLES.blackLine} points={LINE}/>
 
-      <Slider
-        onChange={(e) => {
-          const { value } = e
-          setProgress(value)
-        }}
-        style={STYLES.slider}
-        indicatorStyle={STYLES.indicatorStyle}
-        knobStyle={STYLES.knobStyle}
-        onIndicatorPressedStyle={STYLES.indicatorPressedStyle}
-        onKnobPressedStyle={STYLES.knobPressedStyle}
-      />
-
-      <View style={STYLES.blankContainer}>  
-        <Text style={[STYLES.body]}>Progress: {PROGRESS}%</Text>
-        <Text style={[STYLES.body]}>Progress: 60%??</Text>
-      </View>
-
-      <Line style={STYLES.blackLine} points={LINE}/>
-
-      <View style={STYLES.blankContainer}> 
-      <Text style={[STYLES.body]}>Progress: 60%??</Text>
+      <View style={STYLES.paddedContainer}>
+      <Text style={STYLES.body}>Slider variants!</Text>
+        <Slider
+          style={STYLES.slider}
+          indicatorStyle={STYLES.indicatorStyle}
+          knobStyle={STYLES.knobStyle}
+          onIndicatorPressedStyle={STYLES.indicatorPressedStyle}
+          onKnobPressedStyle={STYLES.knobPressedStyle}
+        />
+        <Slider
+          style={STYLES.sliderThick}
+          indicatorStyle={STYLES.indicatorStyle}
+          knobStyle={STYLES.knobStyle}
+          onIndicatorPressedStyle={STYLES.indicatorPressedStyle}
+          onKnobPressedStyle={STYLES.knobPressedStyle}
+        />
       </View>
 
       <Line style={STYLES.blackLine} points={LINE}/>
