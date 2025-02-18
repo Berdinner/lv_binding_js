@@ -1,4 +1,4 @@
-import { Button, EAlignType, Line, Render, Text, Textarea, View, Checkbox, Image } from "lvgljs-ui";
+import { Button, EAlignType, Line, Render, Text, Textarea, View, Checkbox, Image, Slider } from "lvgljs-ui";
 import React, { useEffect, useState } from "react";
 
 const URL = "https://mastodon.social/api/v1/timelines/public";
@@ -12,6 +12,8 @@ const HIGHLIGHT = "#ff00aa" as any;
 const PIXEL = 4 as any;
 
 const LINE = [[0,0],[320,0]] as any;
+
+const [PROGRESS, setProgress] = useState(0)
 
 const STYLES = {
 
@@ -182,6 +184,38 @@ const STYLES = {
     'background-color': HIGHLIGHT,
   },
 
+  //Sliders
+  slider: {
+    'background-color': 'rgb(187,187,187)',
+    'border-radius': 0,
+    'padding': '-2px 0'
+  },
+  indicatorStyle: {
+    'background-color': 'magenta',
+    'border-radius': 0,
+  },
+  knobStyle: {
+    'background-color': 'cyan',
+    'border-width': '2px',
+    'border-color': 'cyan',
+    'padding': '6px',
+    'border-radius': 0,
+    'transition': 'background-color 300ms linear 0'
+  },
+  indicatorPressedStyle: {
+    'border-radius': 0,
+    'background-color': '0x00838F',
+    'transition': 'background-color 300ms linear 0'
+  },
+  knobPressedStyle: {
+    'background-color': '0x00838F',
+    'border-radius': 0,
+    'transition': 'background-color 300ms linear 0',
+    'border-width': '2px',
+    'border-color': '0x00838F',
+    'padding': '6px',
+  }
+  
   // Lines
 
   whiteLine: { // Thin white line to seperate sections.
@@ -260,6 +294,31 @@ function App() {
 
       <Line style={STYLES.blackLine} points={LINE}/>
 
+      <Slider
+        onChange={(e) => {
+          const { value } = e
+          setProgress(value)
+        }}
+        style={STYLES.slider}
+        indicatorStyle={STYLES.indicatorStyle}
+        knobStyle={STYLES.knobStyle}
+        onIndicatorPressedStyle={STYLES.indicatorPressedStyle}
+        onKnobPressedStyle={STYLES.knobPressedStyle}
+      />
+
+      <View style={STYLES.blankContainer}>  
+        <Text style={[STYLES.body]}>Progress: {PROGRESS}%</Text>
+        <Text style={[STYLES.body]}>Progress: 60%??</Text>
+      </View>
+
+      <Line style={STYLES.blackLine} points={LINE}/>
+
+      <View style={STYLES.blankContainer}> 
+      <Text style={[STYLES.body]}>Progress: 60%??</Text>
+      </View>
+
+      <Line style={STYLES.blackLine} points={LINE}/>
+      
       <View style={STYLES.blankContainer}>
         <Text style={[STYLES.body]}>The quick brown fox jumps over the lazy dog, to which the dog barks and the fox runs away. The fox runs to the forest and the dog follows. The dog is a good dog and the fox is a good fox.</Text>
       </View>
