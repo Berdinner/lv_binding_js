@@ -1,4 +1,4 @@
-import { Button, EAlignType, Line, Render, Text, Textarea, View, Checkbox, Image, Slider } from "lvgljs-ui";
+import { Button, EAlignType, Line, Render, Text, Textarea, View, Checkbox, Image, Slider, Switch } from "lvgljs-ui";
 import React, { useEffect, useState } from "react";
 
 const URL = "https://mastodon.social/api/v1/timelines/public";
@@ -218,6 +218,7 @@ const STYLES = {
   },
 
   //Sliders
+
   slider: {
     'width': '100%',
     'height': 24,
@@ -256,6 +257,26 @@ const STYLES = {
     'background-color': WHITE,
     'padding': PIXEL,
   },
+
+  // Switches - not working properly.
+
+  // switch: {
+  //   'border-radius': 0,
+  //   'border-width': PIXEL,
+  //   'background-color': WHITE,
+  // },
+  // switchChecked: {
+  //   'border-radius': 0,
+  //   'border-width': PIXEL,
+  //   'background-color': BLACK,
+  //   'padding': PIXEL,
+  // },
+  // switchKnob: {
+  //   'border-radius': 0,
+  //   'border-width': PIXEL,
+  //   'border-color': HIGHLIGHT,
+  //   'background-color': HIGHLIGHT,
+  // },
 
   // Lines
 
@@ -334,6 +355,33 @@ function App() {
       </View>
 
       <Line style={STYLES.blackLine} points={LINE}/>
+
+      {/* <View style={STYLES.blankContainer}>
+        <Text style={[STYLES.body]}>
+          Some very non-functional switches!
+        </Text>
+
+        <Switch
+          checked={true}
+          style={STYLES.switch}
+          checkedStyle={STYLES.switchChecked}
+          toggleStyle={STYLES.switchKnob}
+        />
+        <Switch
+          checked={false}
+          style={STYLES.switch}
+          checkedStyle={STYLES.switchChecked}
+          handleStyle={STYLES.switchKnob}
+        />
+        <Switch
+          checked={true}
+          style={STYLES.switch}
+          checkedStyle={STYLES.switchChecked}
+          sliderStyle={STYLES.switchKnob}
+        />
+      </View>
+
+      <Line style={STYLES.blackLine} points={LINE}/> */}
 
       <View style={STYLES.blankContainer}>
         <Text style={STYLES.body}>Thin slider:</Text>
