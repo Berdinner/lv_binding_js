@@ -205,14 +205,20 @@ const STYLES = {
     'font-size': 14,
   },
   indicator: {
+    'border-radius': 0,
+    'border-width': PIXEL,
     'border-color': BLACK,
     'background-color': WHITE,
   },
   indicatorDisabled: {
-    'border-color': BLACK,
-    'background-color': WHITE,
+    'border-radius': 0,
+    'border-width': 0,
+    'background-color': BLACK,
+    'overlay-color': null,  
   },
   indicatorChecked: {
+    'border-radius': 0,
+    'border-width': PIXEL,
     'background-image': null,
     'background-color': HIGHLIGHT,
   },
@@ -446,10 +452,9 @@ function App() {
       />
       <Checkbox
         checked={false}
-        disabled={true}
         text="BAXTER"
         style={STYLES.checkbox}
-        indicatorStyle={STYLES.indicatorDisabled}
+        indicatorStyle={STYLES.indicator}
         indicatorCheckedStyle={STYLES.indicatorChecked}
       />
     </View>
