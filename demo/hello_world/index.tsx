@@ -88,6 +88,32 @@ const STYLES = {
     'display': 'flex', 
     'flex-direction': 'column',
   },
+  sliderContainer: {
+    'padding-left': PIXEL * 3,
+    'padding-right': PIXEL * 3,
+    'padding-top': PIXEL * 2, 
+    'padding-bottom': PIXEL * 2,
+    'width': '100%',
+    'height': 'auto',
+    'border-width': 0,
+    'border-radius': 0,
+    'background-color': WHITE,
+    'display': 'flex', 
+    'flex-direction': 'column',
+  },
+  sliderThickContainer: { // Needs 1px extra padding on sides to accomadate for thicker indicator.
+    'padding-left': PIXEL * 4,
+    'padding-right': PIXEL * 4,
+    'padding-top': PIXEL * 2, 
+    'padding-bottom': PIXEL * 2,
+    'width': '100%',
+    'height': 'auto',
+    'border-width': 0,
+    'border-radius': 0,
+    'background-color': WHITE,
+    'display': 'flex', 
+    'flex-direction': 'column',
+  },
 
   // Text
 
@@ -118,7 +144,10 @@ const STYLES = {
     'background-color': BLACK,
     'border-radius': 0, 
     'border-width': 0,
-    'padding': PIXEL,
+    'padding-left': PIXEL * 2,
+    'padding-right': PIXEL * 2,
+    'padding-top': PIXEL,
+    'padding-bottom': PIXEL,
     'transition-property': 'background-color',
     'transition-duration': '0',
     'transition-timing-function': 'linear',
@@ -141,7 +170,10 @@ const STYLES = {
     'background-color': WHITE,
     'border-radius': 0, 
     'border-width': 2,
-    'padding': PIXEL,
+    'padding-left': PIXEL * 2,
+    'padding-right': PIXEL * 2,
+    'padding-top': PIXEL,
+    'padding-bottom': PIXEL,
     'transition-property': 'background-color',
     'transition-duration': '0',
     'transition-timing-function': 'ease-in-out',
@@ -156,7 +188,6 @@ const STYLES = {
     'background-color': HIGHLIGHT,
     'border-radius': 0, 
     'border-width': 2,
-    'padding': PIXEL,
     'transition-property': 'background-color',
     'transition-duration': '0',
     'transition-timing-function': 'ease-in-out',
@@ -203,21 +234,27 @@ const STYLES = {
     'border-radius': 0,
     'border-width': PIXEL,
     'border-color': BLACK,
-    'padding': PIXEL,
+    'padding': PIXEL
   },
   indicatorStyle: {
     'border-radius': 0,
     'background-color': BLACK,
   },
   knobStyle: {
-    'opacity': 0,
+    'border-radius': 0,
+    'border-width': PIXEL,
+    'background-color': WHITE,
+    'padding': PIXEL,
   },
   indicatorPressedStyle: {
     'border-radius': 0,
     'background-color': HIGHLIGHT,
   },
   knobPressedStyle: {
-    'opacity': 0,
+    'border-radius': 0,
+    'border-width': PIXEL,
+    'background-color': WHITE,
+    'padding': PIXEL,
   },
 
   // Lines
@@ -298,8 +335,11 @@ function App() {
 
       <Line style={STYLES.blackLine} points={LINE}/>
 
-      <View style={STYLES.paddedContainer}>
-      <Text style={STYLES.body}>Slider variants!</Text>
+      <View style={STYLES.blankContainer}>
+        <Text style={STYLES.body}>Thin slider:</Text>
+      </View>
+
+      <View style={STYLES.sliderContainer}>
         <Slider
           style={STYLES.slider}
           indicatorStyle={STYLES.indicatorStyle}
@@ -307,6 +347,13 @@ function App() {
           onIndicatorPressedStyle={STYLES.indicatorPressedStyle}
           onKnobPressedStyle={STYLES.knobPressedStyle}
         />
+      </View>
+
+      <View style={STYLES.blankContainer}>
+        <Text style={STYLES.body}>Thick slider:</Text>
+      </View>
+      
+      <View style={STYLES.sliderThickContainer}>
         <Slider
           style={STYLES.sliderThick}
           indicatorStyle={STYLES.indicatorStyle}
